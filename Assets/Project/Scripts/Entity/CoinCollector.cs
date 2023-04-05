@@ -22,8 +22,7 @@ namespace Shooter
 
             Counter++;
             OnReplenished?.Invoke(Counter);
-
-            PhotonNetwork.Destroy(gameObject);
+            coin.Collecte();
         }
 
         public int Counter { get; private set; }
