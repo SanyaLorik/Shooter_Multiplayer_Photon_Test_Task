@@ -832,6 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b83d399080e2a04fb4f581203d7504b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _region: ru
   _creationField: {fileID: 826796598}
   _creationButton: {fileID: 2102236444}
   _connectionField: {fileID: 429908551}

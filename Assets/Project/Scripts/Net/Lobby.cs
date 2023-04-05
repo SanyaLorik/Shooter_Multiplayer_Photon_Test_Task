@@ -1,11 +1,16 @@
+using Photon.Pun;
+using Photon.Realtime;
 using StudentProfileUnity;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Shooter.Net
 {
-    public class Lobby : MonoBehaviour
+    public class Lobby : MonoBehaviourPunCallbacks
     {
+        [Header("Photon")]
+        [SerializeField] private string _region;
+
         [Header("Creation")]
         [SerializeField] private InputField _creationField;
         [SerializeField] private Button _creationButton;
@@ -14,14 +19,34 @@ namespace Shooter.Net
         [SerializeField] private InputField _connectionField;
         [SerializeField] private Button _connectionButton;
 
-        private void OnEnable()
+        private void Start()
         {
+            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.ConnectToRegion(_region);
+        }
+
+        public override void OnEnable()
+        {
+            base.OnEnable();
+
             _creationButton.onClick.AddListener(OnCreateRoom);
             _connectionButton.onClick.AddListener(OnConnectionToRoom);
         }
 
-        private void OnDisable()
+        public override void OnConnectedToMaster()
         {
+            Debug.Log($"Connected to: {PhotonNetwork.CloudRegion}!");
+        }
+
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            Debug.Log("Disconnected!");
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+
             _creationButton.onClick.RemoveListener(OnCreateRoom);
             _connectionButton.onClick.RemoveListener(OnConnectionToRoom);
         }
