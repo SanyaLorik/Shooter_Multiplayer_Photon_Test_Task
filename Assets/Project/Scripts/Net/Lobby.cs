@@ -1,6 +1,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using StudentProfileUnity;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,8 @@ namespace Shooter.Net
 {
     public class Lobby : MonoBehaviourPunCallbacks
     {
-        [Header("Photon")]
-        [SerializeField] private string _region;
+        [Header("Scene")]
+        [SerializeField] private int _idGameScene;
 
         [Header("Creation")]
         [SerializeField] private InputField _creationField;
@@ -18,6 +19,9 @@ namespace Shooter.Net
         [Header("Connection")]
         [SerializeField] private InputField _connectionField;
         [SerializeField] private Button _connectionButton;
+
+        private const string _region = "ru";
+        private const int _maxPlayerInRoom = 4;
 
         private void Start()
         {
@@ -33,16 +37,6 @@ namespace Shooter.Net
             _connectionButton.onClick.AddListener(OnConnectionToRoom);
         }
 
-        public override void OnConnectedToMaster()
-        {
-            Debug.Log($"Connected to: {PhotonNetwork.CloudRegion}!");
-        }
-
-        public override void OnDisconnected(DisconnectCause cause)
-        {
-            Debug.Log("Disconnected!");
-        }
-
         public override void OnDisable()
         {
             base.OnDisable();
@@ -51,11 +45,45 @@ namespace Shooter.Net
             _connectionButton.onClick.RemoveListener(OnConnectionToRoom);
         }
 
+        public override void OnConnectedToMaster()
+        {
+            Debug.Log($"Connected to region: {PhotonNetwork.CloudRegion}!");
+            PhotonNetwork.JoinLobby();
+        }
+
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            Debug.Log("Disconnected!");
+        }
+
+        public override void OnCreatedRoom()
+        {
+            Debug.Log($"Romm is created: {PhotonNetwork.CurrentRoom.Name}.");
+        }
+
+        public override void OnCreateRoomFailed(short returnCode, string message)
+        {
+            Debug.Log($"Romm is not created! Code: {returnCode}. Message: {message}.");
+        }
+
         private void OnCreateRoom()
         {
+            if (PhotonNetwork.IsConnectedAndReady == false)
+                return;
+
             string name = _creationField.text;
             if (name.IsCorrectNameRoom() == false)
                 return;
+
+            RoomOptions options = new() { MaxPlayers = _maxPlayerInRoom };
+            bool isCreated = PhotonNetwork.CreateRoom(name, options);
+            if (isCreated == false)
+            {
+                Debug.Log($"Romm is not created! isCreated: {isCreated}");
+                return;
+            }
+
+            PhotonNetwork.LoadLevel(_idGameScene);
         }
 
         private void OnConnectionToRoom()
