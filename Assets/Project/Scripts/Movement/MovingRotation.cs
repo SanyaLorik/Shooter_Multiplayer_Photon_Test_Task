@@ -10,7 +10,7 @@ namespace Shooter
 
         private IDirection _direction;
 
-        private void Start()
+        private void Awake()
         {
             _direction = Locator.Instance.Get<IDirection>();
         }
