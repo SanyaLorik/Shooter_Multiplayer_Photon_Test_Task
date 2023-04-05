@@ -328,4 +328,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1484224975857118859}
   _force: 10
-  _damage: 6.47
+  _damage: 8

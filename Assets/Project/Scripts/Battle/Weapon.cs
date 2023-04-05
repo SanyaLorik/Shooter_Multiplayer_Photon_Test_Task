@@ -5,6 +5,7 @@ namespace Shooter
 {
     public class Weapon : MonoBehaviour
     {
+        [SerializeField] private PhotonView _view;
         [SerializeField] private Projectile _projectile;
 
         private IShootingObservable _shootingObservable;
@@ -27,6 +28,9 @@ namespace Shooter
 
         private void OnShoot()
         {
+            if (_view.IsMine == false)
+                return;
+
             var projectile = PhotonNetwork
                 .Instantiate(_projectile.name, transform.position + transform.up, Quaternion.identity)
                 .GetComponent<Projectile>();
