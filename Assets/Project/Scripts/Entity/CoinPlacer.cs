@@ -21,14 +21,14 @@ namespace Shooter
 
         private void OnMove()
         {
-            var point = _points[Random.Range(0, _points.Length)].position;
-            _view.RPC(nameof(Move), RpcTarget.AllBuffered, point.x, point.y);
+            var position = _points[Random.Range(0, _points.Length)].position;
+            _view.RPC(nameof(Move), RpcTarget.AllBuffered, position);
         }
 
         [PunRPC]
-        private void Move(float x, float y)
+        private void Move(Vector3 position)
         {
-            _coin.transform.position = new Vector3(x, y);
+            _coin.transform.position = position;
         }
     }
 }
