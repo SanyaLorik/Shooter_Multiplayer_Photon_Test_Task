@@ -14,7 +14,6 @@ namespace Shooter
         private void Start()
         {
             _direction = Locator.Instance.Get<IDirection>();
-            print(_direction);
         }
 
         private void FixedUpdate()
