@@ -7,5 +7,7 @@ namespace Shooter
     public class PlayerWrapper : MonoBehaviour
     {
         [field: SerializeField] public Player Player { get; private set; }
+
+        [field: SerializeField] public CoinCollector Collector { get; private set; }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using Photon.Pun;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Shooter
@@ -11,7 +9,7 @@ namespace Shooter
         [SerializeField] private PhotonView _view;
         [SerializeField] private PlayerSpawner _spawner;
 
-        private IList<PlayerWrapper> _players = new List<PlayerWrapper>();
+        private PlayerWrapper[] _players = new PlayerWrapper[4];
 
         private void OnEnable()
         {
@@ -31,8 +29,30 @@ namespace Shooter
         [PunRPC]
         private void Add()
         {
-            _players = FindObjectsOfType<PlayerWrapper>().ToList();
-            print(_players.Count);
+            if (_players[0] != null)
+                Unbind();
+
+            _players = FindObjectsOfType<PlayerWrapper>();
+            Bind();
+
+            print(_players.Length);
+        }
+
+        private void Bind()
+        {
+            foreach (var player in _players)
+                player.Player.OnDeid += OnOver;
+        }
+
+        private void Unbind()
+        {
+            foreach (var player in _players)
+                player.Player.OnDeid -= OnOver;
+        }
+
+        private void OnOver()
+        {
+            print("died!");
         }
     }
 }
