@@ -1,7 +1,6 @@
 using Photon.Pun;
 using Photon.Realtime;
 using StudentProfileUnity;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -83,7 +82,7 @@ namespace Shooter.Net
                 return;
 
             RoomOptions options = new() { MaxPlayers = _maxPlayerInRoom };
-            bool isCreated = PhotonNetwork.CreateRoom(name, options);
+            bool isCreated = PhotonNetwork.CreateRoom(name, options, TypedLobby.Default);
             if (isCreated == false)
             {
                 Debug.Log($"Romm is not created! isCreated: {isCreated}");
@@ -91,7 +90,6 @@ namespace Shooter.Net
             }
 
             Debug.Log("Load Game level.");
-            PhotonNetwork.LoadLevel(_idGameScene);
         }
 
         private void OnConnectionToRoom()
