@@ -12,7 +12,7 @@ namespace Shooter
 
         private void Awake()
         {
-            _direction = Locator.Instance.Get<IDirection>();
+            _direction = Locator.Instance.Solve<IDirection>();
         }
 
         private void FixedUpdate()

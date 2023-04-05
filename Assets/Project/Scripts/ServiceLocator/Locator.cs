@@ -6,7 +6,8 @@ namespace Shooter
 {
     public class Locator : MonoBehaviour
     {
-        [SerializeField] private Joystick _joystick;
+        [Header("Player Input")]
+        [SerializeField] private UiInput _input;
 
         public static Locator Instance { get; private set; }
 
@@ -15,23 +16,31 @@ namespace Shooter
         private void Awake()
         {
             Instance ??= this;
+
             BindDirection();
+            BindShooting();
         }
 
-        public T Get<T>()
+        public T Solve<T>()
         {
             return (T)_values[typeof(T)];
         }
 
-        private void Add<T>(T value)
+        private void Register<T>(T value)
         {
             _values.Add(typeof(T), value);
         }
 
         private void BindDirection()
         {
-            IDirection direction = _joystick;
-            Add(direction);
+            IDirection direction = _input;
+            Register(direction);
+        }
+
+        private void BindShooting()
+        {
+            IShootingObservable shooting = _input;
+            Register(shooting);
         }
     }
 }
