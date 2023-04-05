@@ -48,7 +48,8 @@ namespace Shooter.Net
         public override void OnConnectedToMaster()
         {
             Debug.Log($"Connected to region: {PhotonNetwork.CloudRegion}!");
-            PhotonNetwork.JoinLobby();
+            if (PhotonNetwork.InLobby == false)
+                PhotonNetwork.JoinLobby();
         }
 
         public override void OnDisconnected(DisconnectCause cause)
@@ -64,6 +65,12 @@ namespace Shooter.Net
         public override void OnCreateRoomFailed(short returnCode, string message)
         {
             Debug.Log($"Romm is not created! Code: {returnCode}. Message: {message}.");
+        }
+
+        public override void OnJoinedRoom()
+        {
+            Debug.Log("Load Game level.");
+            PhotonNetwork.LoadLevel(_idGameScene);
         }
 
         private void OnCreateRoom()
@@ -83,6 +90,7 @@ namespace Shooter.Net
                 return;
             }
 
+            Debug.Log("Load Game level.");
             PhotonNetwork.LoadLevel(_idGameScene);
         }
 
@@ -91,6 +99,8 @@ namespace Shooter.Net
             string name = _connectionField.text;
             if (name.IsCorrectNameRoom() == false)
                 return;
+
+            PhotonNetwork.JoinRoom(name);
         }
     }
 }
