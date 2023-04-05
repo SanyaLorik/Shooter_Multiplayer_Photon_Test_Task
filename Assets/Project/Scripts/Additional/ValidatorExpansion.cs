@@ -1,4 +1,4 @@
-﻿namespace StudentProfileUnity
+﻿namespace Shooter
 {
     public static class ValidatorExpansion 
     {

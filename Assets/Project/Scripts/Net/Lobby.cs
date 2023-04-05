@@ -1,6 +1,6 @@
 using Photon.Pun;
 using Photon.Realtime;
-using StudentProfileUnity;
+using Shooter;
 using UnityEngine;
 using UnityEngine.UI;
 
