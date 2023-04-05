@@ -14,8 +14,13 @@ namespace Shooter
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (_view.IsMine == true)
-                PhotonNetwork.Destroy(gameObject);
+            if (_view.IsMine == false)
+                return;
+
+            if (collision.transform.TryGetComponent(out IDamageable<float> damage) == true)
+                damage.Damage(_damage);
+
+            PhotonNetwork.Destroy(gameObject);
         }
 
         public void Launch(Vector2 direction)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8573682237350581252}
   - component: {fileID: 8522369616510498964}
   - component: {fileID: 7842915180047426535}
+  - component: {fileID: 3561841027485465718}
   - component: {fileID: 8987447806316541203}
   m_Layer: 0
   m_Name: Canvas
@@ -103,6 +104,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3561841027485465718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792787058926597262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf502efa6704dc4b988cbb091211f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 7433056952651664509}
+  _healthbar: {fileID: 3928198327241370797}
 --- !u!114 &8987447806316541203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +219,7 @@ GameObject:
   - component: {fileID: 3251268886818977772}
   - component: {fileID: 8039630888918444733}
   - component: {fileID: 7618492606216739217}
+  - component: {fileID: 7433056952651664509}
   - component: {fileID: 2547896975256921012}
   - component: {fileID: 5345278400846145711}
   - component: {fileID: 8903436869742559062}
@@ -268,6 +284,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7433056952651664509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6711811639237763883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803bcf3d356c61c42a52528b39eb7817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
 --- !u!114 &2547896975256921012
 MonoBehaviour:
   m_ObjectHideFlags: 0
