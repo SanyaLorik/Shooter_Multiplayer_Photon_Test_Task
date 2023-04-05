@@ -12,8 +12,6 @@ namespace Shooter
 
         public event Action<int> OnReplenished;
 
-        private int _counter = 0;
-
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (_view.IsMine == false)
@@ -22,10 +20,12 @@ namespace Shooter
             if (collision.transform.TryGetComponent(out Coin coin) == false)
                 return;
 
-            _counter++;
-            OnReplenished?.Invoke(_counter);
+            Counter++;
+            OnReplenished?.Invoke(Counter);
 
             PhotonNetwork.Destroy(gameObject);
         }
+
+        public int Counter { get; private set; }
     }
 }

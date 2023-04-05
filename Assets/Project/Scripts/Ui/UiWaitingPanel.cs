@@ -15,7 +15,7 @@ namespace Shooter
             if (PhotonNetwork.CountOfPlayers >= _minPlayer)
                 _panel.SetActive(false);
         }
-
+        
         public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
         {
             _panel.SetActive(false);

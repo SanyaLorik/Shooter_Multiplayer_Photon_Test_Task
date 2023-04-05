@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using UnityEngine;
 
 namespace Shooter
@@ -8,10 +9,16 @@ namespace Shooter
         [SerializeField] private Transform[] _spawnpoints;
         [SerializeField] private GameObject _player;
 
+        public event Action<PlayerWrapper> OnSpawned;
+
         private void Start()
         {
             var spawnpoint = _spawnpoints[PhotonNetwork.CountOfPlayers - 1];
-            PhotonNetwork.Instantiate(_player.name, spawnpoint.position, spawnpoint.rotation);
+            var player = PhotonNetwork
+                .Instantiate(_player.name, spawnpoint.position, spawnpoint.rotation)
+                .GetComponent<PlayerWrapper>();
+
+            OnSpawned?.Invoke(player);
         }
     }
 }
