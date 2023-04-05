@@ -25,7 +25,7 @@ namespace Shooter
 
         private void Add<T>(T value)
         {
-            _values.Add(value.GetType(), value);
+            _values.Add(typeof(T), value);
         }
 
         private void BindDirection()
