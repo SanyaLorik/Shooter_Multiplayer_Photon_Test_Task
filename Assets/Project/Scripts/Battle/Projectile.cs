@@ -12,12 +12,12 @@ namespace Shooter
         [SerializeField][Range(0f, 10f)] private float _force;
         [SerializeField][Min(0)] private float _damage;
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             if (_view.IsMine == false)
                 return;
 
-            if (collision.transform.TryGetComponent(out IDamageable<float> damage) == true)
+            if (collision.TryGetComponent(out IDamageable<float> damage) == true)
                 damage.Damage(_damage);
 
             PhotonNetwork.Destroy(gameObject);

@@ -11,6 +11,9 @@ namespace Shooter.Net
         [Header("Scene")]
         [SerializeField] private int _idGameScene;
 
+        [Header("Player")]
+        [SerializeField] private InputField _nicknameField;
+
         [Header("Creation")]
         [SerializeField] private InputField _creationField;
         [SerializeField] private Button _creationButton;
@@ -74,12 +77,17 @@ namespace Shooter.Net
 
         private void OnCreateRoom()
         {
+            if (_nicknameField.text.IsCorrectNickname() == false)
+                return;
+
             if (PhotonNetwork.IsConnectedAndReady == false)
                 return;
 
             string name = _creationField.text;
             if (name.IsCorrectNameRoom() == false)
                 return;
+
+            PhotonNetwork.NickName = _nicknameField.text;
 
             RoomOptions options = new() { MaxPlayers = _maxPlayerInRoom };
             bool isCreated = PhotonNetwork.CreateRoom(name, options, TypedLobby.Default);
@@ -94,10 +102,14 @@ namespace Shooter.Net
 
         private void OnConnectionToRoom()
         {
+            if (_nicknameField.text.IsCorrectNickname() == false)
+                return;
+
             string name = _connectionField.text;
             if (name.IsCorrectNameRoom() == false)
                 return;
 
+            PhotonNetwork.NickName = _nicknameField.text;
             PhotonNetwork.JoinRoom(name);
         }
     }
