@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 8573682237350581252}
   - component: {fileID: 8522369616510498964}
   - component: {fileID: 7842915180047426535}
+  - component: {fileID: 6777895382916215578}
   - component: {fileID: 3561841027485465718}
   - component: {fileID: 4549635762989420296}
   - component: {fileID: 7262119395403246628}
@@ -267,6 +268,28 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6777895382916215578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792787058926597262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &3561841027485465718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d106899c82711d649a379c37057a6ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _view: {fileID: 6777895382916215578}
   _score: {fileID: 5623370959024645434}
 --- !u!114 &8987447806316541203
 MonoBehaviour:
