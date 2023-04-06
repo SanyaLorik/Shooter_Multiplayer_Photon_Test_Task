@@ -21,7 +21,11 @@ namespace Shooter
 
         private void OnMove()
         {
-            var position = _points[Random.Range(0, _points.Length)].position;
+            Vector3 position;
+            do
+                position = _points[Random.Range(0, _points.Length)].position;
+            while (position == _coin.transform.position);
+
             _view.RPC(nameof(Move), RpcTarget.AllBuffered, position);
         }
 
