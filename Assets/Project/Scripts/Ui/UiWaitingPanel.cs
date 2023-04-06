@@ -1,22 +1,18 @@
 ﻿using Photon.Pun;
+using System.Collections;
 using UnityEngine;
 
 namespace Shooter
 {
-    public class UiWaitingPanel : MonoBehaviourPunCallbacks
+    public class UiWaitingPanel : MonoBehaviour
     {
         [SerializeField] private GameObject _panel;
 
         private const int _minPlayer = 2;
 
-        private void Start()
+        private IEnumerator Start()
         {
-            if (PhotonNetwork.CountOfPlayers >= _minPlayer)
-                _panel.SetActive(false);
-        }
-        
-        public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
-        {
+            yield return new WaitWhile(() => PhotonNetwork.PlayerList.Length < _minPlayer);
             _panel.SetActive(false);
         }
     }

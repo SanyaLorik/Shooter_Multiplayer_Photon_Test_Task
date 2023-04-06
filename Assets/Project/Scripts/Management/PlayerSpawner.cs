@@ -13,7 +13,7 @@ namespace Shooter
 
         private void Start()
         {
-            var spawnpoint = _spawnpoints[PhotonNetwork.CountOfPlayers - 1];
+            var spawnpoint = _spawnpoints[PhotonNetwork.PlayerList.Length - 1];
             var player = PhotonNetwork
                 .Instantiate(_playerPrefab.name, spawnpoint.position, spawnpoint.rotation)
                 .GetComponent<PlayerWrapper>();
