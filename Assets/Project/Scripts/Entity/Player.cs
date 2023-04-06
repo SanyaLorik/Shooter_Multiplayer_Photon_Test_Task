@@ -7,6 +7,8 @@ namespace Shooter
     {
         [SerializeField][Min(0)] private float _health;
 
+        [field: SerializeField] public CoinCollector Collector { get; private set; }
+
         public event Action<float> OnHealthChangedAsPercent;
         public event Action OnDeid;
 
@@ -16,6 +18,8 @@ namespace Shooter
         {
             _maxHealth = _health;
         }
+
+        public bool IsAlive => _health > 0;
 
         public void Damage(float value)
         {

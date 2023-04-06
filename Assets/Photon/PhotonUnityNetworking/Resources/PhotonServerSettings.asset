@@ -48,6 +48,9 @@ MonoBehaviour:
   - Move
   - SetUiParent
   - SetScoreRPC
+  - Die
+  - ShowOver
+  - Over
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
