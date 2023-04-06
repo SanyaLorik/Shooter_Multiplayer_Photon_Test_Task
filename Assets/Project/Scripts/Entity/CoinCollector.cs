@@ -9,6 +9,7 @@ namespace Shooter
     public class CoinCollector : MonoBehaviour
     {
         [SerializeField] private PhotonView _view;
+        [SerializeField] private UiScore _uiScore;
 
         public event Action<int> OnReplenished;
 
@@ -23,6 +24,7 @@ namespace Shooter
             Counter++;
             OnReplenished?.Invoke(Counter);
             coin.Collecte();
+            _uiScore.SetScore(Counter);
         }
 
         public int Counter { get; private set; }
