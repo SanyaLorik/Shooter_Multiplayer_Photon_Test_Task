@@ -2,6 +2,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using Shooter;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Shooter.Net
@@ -9,7 +10,7 @@ namespace Shooter.Net
     public class Lobby : MonoBehaviourPunCallbacks
     {
         [Header("Scene")]
-        [SerializeField] private int _idGameScene;
+        [SerializeField] private SceneLoader _sceneLoader;
 
         [Header("Player")]
         [SerializeField] private InputField _nicknameField;
@@ -72,7 +73,7 @@ namespace Shooter.Net
         public override void OnJoinedRoom()
         {
             Debug.Log("Load Game level.");
-            PhotonNetwork.LoadLevel(_idGameScene);
+            _sceneLoader.LoadGame();
         }
 
         private void OnCreateRoom()

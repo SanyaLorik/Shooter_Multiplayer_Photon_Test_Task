@@ -328,5 +328,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 5678497178808651943}
   _rigidbody: {fileID: 1484224975857118859}
-  _force: 10
+  _force: 12
   _damage: 8

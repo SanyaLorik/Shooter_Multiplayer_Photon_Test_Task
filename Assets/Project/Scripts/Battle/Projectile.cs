@@ -9,7 +9,7 @@ namespace Shooter
     {
         [SerializeField] private PhotonView _view;
         [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField][Range(0f, 10f)] private float _force;
+        [SerializeField][Range(0f, 20f)] private float _force;
         [SerializeField][Min(0)] private float _damage;
 
         private void OnTriggerEnter2D(Collider2D collision)
