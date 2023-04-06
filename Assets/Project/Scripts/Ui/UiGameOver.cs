@@ -21,7 +21,7 @@ namespace Shooter
         {
             _panel.SetActive(true);
 
-            _nickname.text =  $"Ник: {nickname}";
+            _nickname.text =  $"Победитель: {nickname}";
             _score.text = $"Счет: {score}"; ;
         }
     }
