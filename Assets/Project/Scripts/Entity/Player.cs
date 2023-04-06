@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using UnityEngine;
 
 namespace Shooter
 {
     public class Player : MonoBehaviour, IDamageable<float>
     {
+        [SerializeField] private PhotonView _view;
         [SerializeField][Min(0)] private float _health;
 
         [field: SerializeField] public CoinCollector Collector { get; private set; }
@@ -18,6 +20,8 @@ namespace Shooter
         {
             _maxHealth = _health;
         }
+
+        public string Nickname => _view.Owner.NickName;
 
         public bool IsAlive => _health > 0;
 

@@ -63,14 +63,14 @@ namespace Shooter
             if (winners.Count() > 1)
                 return;
 
-            var winner = winners.FirstOrDefault();
-            _view.RPC(nameof(Over), RpcTarget.All);
+            var winner = winners.FirstOrDefault().Player;
+            _view.RPC(nameof(Over), RpcTarget.AllBuffered, winner.Nickname, winner.Collector.Counter);
         }
 
         [PunRPC]
-        private void Over()
+        private void Over(string nickname, int score)
         {
-            _ui.Show();
+            _ui.Show(nickname, score);
         }
     }
 }
