@@ -630,7 +630,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 100
-  <Collector>k__BackingField: {fileID: 7899888463417394290}
 --- !u!114 &2547896975256921012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,8 +849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09eddb777a8b4349a93c2e792e1bcfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _view: {fileID: 3786824403497532541}
   <Player>k__BackingField: {fileID: 7433056952651664509}
+  <Collector>k__BackingField: {fileID: 7899888463417394290}
 --- !u!1 &7987861137528959156
 GameObject:
   m_ObjectHideFlags: 0

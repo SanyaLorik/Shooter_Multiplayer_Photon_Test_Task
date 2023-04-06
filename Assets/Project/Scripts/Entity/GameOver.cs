@@ -1,17 +1,12 @@
 ﻿using Photon.Pun;
-using System.Linq;
 using UnityEngine;
 
 namespace Shooter
 {
     public class GameOver : MonoBehaviour
     {
-        [Header("Envoriment")]
         [SerializeField] private PhotonView _view;
         [SerializeField] private PlayerSpawner _spawner;
-
-        [Header("Ui")]
-        [SerializeField] private UiGameOver _ui;
 
         private PlayerWrapper[] _players = new PlayerWrapper[4];
 
@@ -23,9 +18,6 @@ namespace Shooter
         private void OnDisable()
         {
             _spawner.OnSpawned -= OnAdded;
-
-            if (_players[0] != null)
-                Unbind();
         }
 
         private void OnAdded(PlayerWrapper player)
@@ -59,18 +51,7 @@ namespace Shooter
 
         private void OnOver()
         {
-            var winners = _players.Where(i => i.Player.IsAlive == true);
-            if (winners.Count() > 1)
-                return;
-
-            var winner = winners.FirstOrDefault();
-            _view.RPC(nameof(Over), RpcTarget.All);
-        }
-
-        [PunRPC]
-        private void Over()
-        {
-            _ui.Show();
+            print("died!");
         }
     }
 }
